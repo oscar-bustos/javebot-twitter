@@ -1,6 +1,7 @@
 import tweepy
 import logging
 from config_bot import create_api
+from dynamo import save_tweet
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger()
@@ -12,7 +13,7 @@ class ColombiaStreamListener(tweepy.StreamListener):
         self.me = api.me()
 
     def on_status(self, tweet):
-        print(f"{tweet.user.name}:{tweet.text}")
+        save_tweet(tweet)
 
     def on_error(self, status):
         print("Error detected")
