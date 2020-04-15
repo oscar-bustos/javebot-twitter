@@ -1,7 +1,7 @@
 import tweepy
 import logging
 from config_bot import create_api
-from dynamo import save_tweet
+from firehose import save_tweet
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger()
