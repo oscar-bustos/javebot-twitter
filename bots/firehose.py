@@ -14,13 +14,11 @@ def save_tweet(tweet):
         response = firehose.put_record(
             DeliveryStreamName='twitter-stream',
             Record={
-                'Data': json.dumps(tweet._json).replace("'", '"').encode()
+                'Data': json.dumps(tweet._json).replace("'", '"').join("\n")
+                    .encode()
             }
         )
 
     except Exception as e:
         logger.error("Error saving tweet", exc_info=True)
         raise e
-
-
-
